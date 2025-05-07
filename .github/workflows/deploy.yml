@@ -44,5 +44,12 @@ jobs:
           script: |
             cd /root/priceAlert
             pnpm install --production
+            # 创建环境变量文件
+            echo "EMAIL_HOST=smtp.163.com" > .env
+            echo "EMAIL_PORT=465" >> .env
+            echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" >> .env
+            echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
+            echo "DEBUG=false" >> .env
+            # 启动应用
             pm2 delete priceAlert || true
-            pm2 start ecosystem.config.js --name priceAlert
+            pm2 start ecosystem.config.js
