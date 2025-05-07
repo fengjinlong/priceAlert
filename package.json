@@ -1,0 +1,19 @@
+{
+  "name": "price-alert",
+  "version": "1.0.0",
+  "description": "Cryptocurrency price alert service",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.11"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
