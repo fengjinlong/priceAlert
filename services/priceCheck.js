@@ -4,7 +4,6 @@ require("dotenv").config();
 class PriceCheckService {
   constructor() {
     this.baseUrl = "https://min-api.cryptocompare.com/data/price";
-    this.lastTriggerTimes = new Map(); // Store last trigger times for cooldown
   }
 
   async getCurrentPrice(coin) {
@@ -20,7 +19,7 @@ class PriceCheckService {
       });
       return response.data.USD;
     } catch (error) {
-      // console.error(`Error fetching price for ${coin}:`, error.message);
+      console.error(`Error fetching price for ${coin}:`, error.message);
       return null;
     }
   }
@@ -32,32 +31,13 @@ class PriceCheckService {
       case "<":
         return currentPrice < targetPrice;
       default:
-        // console.error("Invalid condition:", condition);
+        console.error("Invalid condition:", condition);
         return false;
     }
   }
 
-  canTriggerAlert(alertId) {
-    const lastTriggerTime = this.lastTriggerTimes.get(alertId);
-    if (!lastTriggerTime) return true;
-
-    const cooldownMinutes = parseInt(process.env.TRIGGER_COOLDOWN) || 60;
-    const cooldownMs = cooldownMinutes * 60 * 1000;
-    const timeSinceLastTrigger = Date.now() - lastTriggerTime;
-
-    return timeSinceLastTrigger >= cooldownMs;
-  }
-
-  updateLastTriggerTime(alertId) {
-    this.lastTriggerTimes.set(alertId, Date.now());
-  }
-
   async checkAlert(alert) {
-    const { id, coin, condition, target: targetPrice } = alert;
-
-    if (!this.canTriggerAlert(id)) {
-      return false;
-    }
+    const { coin, condition, target: targetPrice } = alert;
 
     const currentPrice = await this.getCurrentPrice(coin);
     if (currentPrice === null) {
@@ -70,7 +50,6 @@ class PriceCheckService {
       targetPrice
     );
     if (isTriggered) {
-      this.updateLastTriggerTime(id);
       return {
         ...alert,
         currentPrice,
