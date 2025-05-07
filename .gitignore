@@ -15,8 +15,10 @@ yarn-error.log
 
 # Environment variables
 .env
+.env.local
+.env.*.local
 
-# But allow .env.example
+# Allow example environment file
 !.env.example
 
 dist
