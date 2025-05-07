@@ -45,4 +45,4 @@ jobs:
             cd /root/priceAlert
             pnpm install --production
             pm2 delete priceAlert || true
-            pm2 start app.js --name priceAlert
+            pm2 start ecosystem.config.js --name priceAlert
