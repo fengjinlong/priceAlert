@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "pm2": "pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "axios": "^1.6.7",

@@ -1,0 +1,51 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Deploy to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST || '117.72.63.11' }}
+          username: ${{ secrets.SERVER_USERNAME || 'root' }}
+          password: ${{ secrets.SERVER_PASSWORD || 'Web198743@' }}
+          source: "."
+          target: "/root/priceAlert"
+
+      - name: Execute remote commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST || '117.72.63.11' }}
+          username: ${{ secrets.SERVER_USERNAME || 'root' }}
+          password: ${{ secrets.SERVER_PASSWORD || 'Web198743@' }}
+          script: |
+            cd /root/priceAlert
+            pnpm install --production
+            pm2 delete priceAlert || true
+            pm2 start app.js --name priceAlert
