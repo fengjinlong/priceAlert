@@ -31,6 +31,22 @@
             "target": 150,
             "email": "18618166564@163.com",
             "interval": 15
+        },
+        {
+            "id": "btc-alert-3",
+            "coin": "BTC",
+            "condition": ">",
+            "target": 98000,
+            "email": "zgp@ssmic.cn",
+            "interval": 15
+        },
+        {
+            "id": "btc-alert-4",
+            "coin": "BTC",
+            "condition": ">",
+            "target": 98000,
+            "email": "18618166564@163.com",
+            "interval": 15
         }
     ]
 } 
