@@ -33,6 +33,14 @@
             "interval": 15
         },
         {
+            "id": "sol-alert-3",
+            "coin": "SOL",
+            "condition": ">",
+            "target": 150,
+            "email": "zgp@ssmic.cn",
+            "interval": 15
+        },
+        {
             "id": "btc-alert-3",
             "coin": "BTC",
             "condition": ">",
