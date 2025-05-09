@@ -4,7 +4,7 @@
             "id": "btc-alert-1",
             "coin": "BTC",
             "condition": ">",
-            "target": 100000,
+            "target": 110000,
             "email": "18618166564@163.com",
             "interval": 15
         },
@@ -28,7 +28,7 @@
             "id": "sol-alert-2",
             "coin": "SOL",
             "condition": ">",
-            "target": 153,
+            "target": 164,
             "email": "18618166564@163.com",
             "interval": 15
         },
@@ -36,7 +36,7 @@
             "id": "sol-alert-3",
             "coin": "SOL",
             "condition": ">",
-            "target": 153,
+            "target": 164,
             "email": "zgp@ssmic.cn",
             "interval": 15
         },
@@ -44,7 +44,7 @@
             "id": "btc-alert-3",
             "coin": "BTC",
             "condition": ">",
-            "target": 100000,
+            "target": 109000,
             "email": "zgp@ssmic.cn",
             "interval": 15
         }
