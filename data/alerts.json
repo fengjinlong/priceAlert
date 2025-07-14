@@ -4,7 +4,7 @@
             "id": "btc-alert-1",
             "coin": "BTC",
             "condition": ">",
-            "target": 110000,
+            "target": 130000,
             "email": "18618166564@163.com",
             "interval": 15
         },
