@@ -20,7 +20,7 @@
             "id": "sol-alert-1",
             "coin": "SOL",
             "condition": ">",
-            "target": 205,
+            "target": 210,
             "email": "18618166564@163.com",
             "interval": 15
         }
